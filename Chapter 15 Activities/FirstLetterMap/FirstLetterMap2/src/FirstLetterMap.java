@@ -4,9 +4,9 @@ import java.io.*;
  * Read all words from a file and add them to a map
  * whose keys are the first letters of the words and
  * whose values are sets of words that start with
- * that same letter. Then print out the word sets in
- * alphabetical order. Update the map by modifying
- * Worked Example 15.1.
+ * that same letter.
+ * Then print out the word sets in alphabetical order.
+ * Use the Java 8 merge() feature.
 */
 public class FirstLetterMap
 {
@@ -18,7 +18,7 @@ public class FirstLetterMap
         {
 
             // Create your map here
-            ...
+            Map <Character, Set<String>> map = new HashMap<>();
 
             while (in.hasNext())
             {
@@ -26,15 +26,23 @@ public class FirstLetterMap
                 Character c = word.charAt(0);
 
                 // Update the map here
-                // Modify Worked Example 15.1
-                . . .
-
+                // Use the Java 8 merge method
+                if (map.get(c) != null && !map.get(c).contains(word)){
+                    map.get(c).add(word);
+                }
+                else {
+                    Set<String> set = new HashSet<>();
+                    set.add(word);
+                    map.put(c, set);
+                }
 
             }
 
             // Print the map here in this form
             // a: [a, able, aardvark]
-            . . .
+            for (Character key: map.keySet()) {
+                System.out.println(key + ": " + map.get(key));
+            }   
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
@@ -54,4 +62,5 @@ public class FirstLetterMap
         }
         return r.toLowerCase();
     }
+
 }
