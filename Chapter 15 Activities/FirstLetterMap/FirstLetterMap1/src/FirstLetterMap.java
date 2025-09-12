@@ -24,17 +24,13 @@ public class FirstLetterMap
             {
                 String word = clean(in.next());
                 Character c = word.charAt(0);
+                Set<String>wor = new HashSet<>();
+                wor = word;
+                
 
                 // Update the map here
                 // Use the Java 8 merge method
-                if (map.get(c) != null && !map.get(c).contains(word)){
-                    map.get(c).add(word);
-                }
-                else {
-                    Set<String> set = new HashSet<>();
-                    set.add(word);
-                    map.put(c, set);
-                }
+                map.merge(c,word, (a, b) -> a.add(b));
 
             }
 
