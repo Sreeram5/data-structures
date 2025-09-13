@@ -12,7 +12,7 @@ public class FirstLetterMap
 {
     public static void main(String[] args)
     {
-        String filename = "src/test1.txt";
+        String filename = "C:\\Users\\Sreeram Potnuru\\Desktop\\Software Engineering\\data-structures\\Chapter 15 Activities\\FirstLetterMap\\FirstLetterMap1\\src\\test1.txt";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
@@ -24,13 +24,11 @@ public class FirstLetterMap
             {
                 String word = clean(in.next());
                 Character c = word.charAt(0);
-                Set<String>wor = new HashSet<>();
-                wor = word;
-                
-
+                Set<String> single = new HashSet<>();
+                single.add(word);
                 // Update the map here
                 // Use the Java 8 merge method
-                map.merge(c,word, (a, b) -> a.add(b));
+                map.merge(c,single, (a, b) -> {a.addAll(b); return a;});
 
             }
 
