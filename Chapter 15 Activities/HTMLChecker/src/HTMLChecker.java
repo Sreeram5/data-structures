@@ -17,13 +17,30 @@ public class HTMLChecker
 {
     public static void main(String[] args)
     {
-        String filename = "src/TagSample1.html";
+        String filename = "Chapter 15 Activities\\HTMLChecker\\src\\TagSample3.html";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
-            // Your code goes here
-            . . .
-
+            Stack<String> stack = new Stack<>();
+            boolean valid = true;
+            while (in.hasNext()) 
+            {
+                String tag = in.next();
+                if (!tag.startsWith("</")) 
+                {
+                    stack.push(tag.substring(1, tag.length() - 1));
+                } 
+                else 
+                {
+                    if (stack.isEmpty() || !stack.pop().equals(tag.substring(2, tag.length() - 1)))
+                    {
+                        valid = false;
+                    }
+                }
+            }
+            if (!stack.isEmpty()) 
+                valid = false;
+            System.out.println(valid);
 
         } catch (FileNotFoundException e)
         {
