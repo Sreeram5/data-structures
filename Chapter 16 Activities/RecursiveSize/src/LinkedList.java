@@ -26,12 +26,15 @@ public class LinkedList
     */
     public int size()
     {
-        LinkedList copy = this;
-        if (copy.first == null) {
+        return size(first);
+    }
+
+    private static int size(Node start)
+    {
+        if (start == null) {
             return 0;
         } else {
-            copy.removeFirst();
-            return 1 + copy.size();
+            return 1 + size(start.next);
         }
     }
 
