@@ -26,7 +26,13 @@ public class LinkedList
     */
     public int size()
     {
-        . . .
+        LinkedList copy = this;
+        if (copy.first == null) {
+            return 0;
+        } else {
+            copy.removeFirst();
+            return 1 + copy.size();
+        }
     }
 
 
